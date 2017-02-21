@@ -1,6 +1,5 @@
 # Stream
 
-
  - Byte Streams (Binary)
     * InputStream 
     * OuputStream
@@ -13,7 +12,7 @@
 
 
 1. InputStream & Reader
- 
+
  ``` java
  /* InputStream*/
  int read(); // return -1 if no data

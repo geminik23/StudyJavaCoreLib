@@ -41,7 +41,8 @@ public class Example1{
 		char[] buff = new char[8];
 		int length;
 
-		try (Reader reader = FileHelper.OpenReader("res/file1.txt");
+		try (
+			Reader reader = FileHelper.OpenReader("res/file1.txt");
 			Writer writer = FileHelper.OpenWriter("res/file2.txt")
 			){
 			while((length = reader.read(buff))>=0){

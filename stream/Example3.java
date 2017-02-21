@@ -15,13 +15,13 @@ import java.util.List;
 public class Example3{
 
     public static void main(String[] args){
-        readTxtFile();
+        // readTxtFile();
         // writeLines();
-        // readLines();
+        readLines();
     }
 
     public static void readTxtFile(){
-        try(BufferedReader br = Files.newBufferedReader(Paths.get("res/file1.txt"))){ // !!! Deprecated
+        try(BufferedReader br = Files.newBufferedReader(Paths.get("res/file1.txt"))){ 
             String str;
 			while((str = br.readLine())!=null){
 				System.out.println(str);

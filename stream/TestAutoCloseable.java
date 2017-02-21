@@ -8,14 +8,14 @@ public class TestAutoCloseable  implements AutoCloseable{
 
     @Override
     public void close() throws IOException {
-        // throw new IOException("close exception");
-        System.out.println("TestAutoCloseable : close()");
+        throw new IOException("close exception");
+        // System.out.println("TestAutoCloseable : close()");
     }
 
 
     public void doSomthing() throws IOException{
-        // throw new IOException("dosomething exception");
-        System.out.println("TestAutoCloseable : doSomething()");
+        throw new IOException("dosomething exception");
+        // System.out.println("TestAutoCloseable : doSomething()");
     }
     
 
