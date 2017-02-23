@@ -91,4 +91,69 @@ How to get **Serial Version Unique Identifier**?
  [Example2 - Save and Restore using serialVersionUID](Example2.java)
 
 
-//TODO testing Example2.java
+Customizing Serialization
+===========================
+
+ Methods called through reflection
+---------------------------
+ - writeObject
+    * return void
+    * throws IOException
+    * ObjectOutputStream parameter
+        * write values
+        * use writeFields
+        * can call defaultWriteObject
+ - readObject  
+    * return void
+    * throws IOException, ClassNotFoundException
+    * ObjectInputStream parameter
+        * read values
+        * use readFields
+        * can call defaultReadObject
+
+```java
+
+/* this acts like default serialization */
+public class UserInfo{
+    ...
+
+    private void writeObject(ObjectOutputStream out) throws IOException{
+        out.defaultWriteObject();
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
+        in.defaultReadObject();
+    }
+
+    ...
+}
+
+```
+
+
+
+Using Fields interface
+---------------------------
+ Can access values by name and set default value.
+
+```java
+public class UserInfo{
+    ...
+
+    private void writeObject(ObjectOutputStream out) throws IOException{
+        out.defaultWriteObject();
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
+        ObjectInputStream.GetField fields = in.readFields();
+        this.userId = (String) fields.get("userId", null);
+        this.maxScore = fields.get("maxScore", 1000);
+        this.currentScore = fields.get("currentScore", -1);
+        this.gameCount = fields.get("gameCount", -1);
+    }
+
+    ...
+}
+```
+
+ [Example3 - Write through defaultWriteObject() and read using Fields](Example2.java)   comparison with (UserInfo2 and UserInfo3)
