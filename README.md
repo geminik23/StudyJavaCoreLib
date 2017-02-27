@@ -6,3 +6,4 @@ JAVA Core Library
 
 *   [Stream](stream/Stream.md)
 *   [Serialization](serialization/Serialization.md)
+*   [Properties](properties/Properties.md)
