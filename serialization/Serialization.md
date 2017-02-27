@@ -160,3 +160,42 @@ public class UserInfo{
 
  [Example3 - Write through defaultWriteObject() and read using Fields](Example2.java)   comparison with (UserInfo2 and UserInfo3)
 
+
+Trasient Fields
+============================
+ avoid unnecessary fields
+
+ use transient keywords
+
+```java
+
+public class Users{
+    private Set<UserInfo> users = new HashSet<>();
+    private transient int maxScore = 0;    
+
+
+    public int getMaxScore(){return maxScore;}
+    public void addUser(UserInfo info){
+        this.users.add(info);
+        this.maxScore = Math.max(this.maxScore, info.getMaxScore());
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(UserInfo ui: users){
+            sb.append(ui);
+            sb.append("\n");
+        }
+
+        return String.format(
+            "Total Users : %d\n MaxScore : %d\n%s",
+            users.size(), this.maxScore, sb.toString() 
+        );
+    }
+
+}
+
+```
+ [Example4 - Used transient field](Example3.java) 
+

@@ -33,6 +33,10 @@ public class UserInfo implements Serializable{
         this.maxScore = Math.max(maxScore, score);
     }
 
+    public int getMaxScore(){return this.maxScore;}
+    public int getCurrentScore(){return this.currentScore;}
+    
+
     @Override
     public String toString(){
         return String.format("UserId : %s , Max Score : %d, Current Score : %d", this.userId, this.maxScore, this.currentScore);
