@@ -100,6 +100,7 @@ Customizing Serialization
     * return void
     * throws IOException
     * ObjectOutputStream parameter
+        * private
         * write values
         * use writeFields
         * can call defaultWriteObject
@@ -107,6 +108,7 @@ Customizing Serialization
     * return void
     * throws IOException, ClassNotFoundException
     * ObjectInputStream parameter
+        * private 
         * read values
         * use readFields
         * can call defaultReadObject
@@ -157,3 +159,4 @@ public class UserInfo{
 ```
 
  [Example3 - Write through defaultWriteObject() and read using Fields](Example2.java)   comparison with (UserInfo2 and UserInfo3)
+
