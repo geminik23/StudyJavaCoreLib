@@ -22,11 +22,11 @@ Properties
   Store Properties to Text
   ```java
   Properties prop = new Propeties();
-  prop.setProperty("name", "Jaemin Kim");
+  prop.setProperty("Name", "Jaemin Kim");
   prop.setProperty("PhoneNumber", "000-0000-0000");
 
   try(Writer writer = Files.newBufferedWriter(Paths.get("some.properties"))){
-      prop.stor(writer, "some comments");
+      prop.store(writer, "some comments");
   }
   ```
   above code results
@@ -63,3 +63,50 @@ String value4 = prop.getProperty("key4"); // some value
 
  XML
  -------------------------------
+
+ use .xml File
+
+ method storeToXML & loadFromXML (OutputStream/InputStream)
+
+ One element in XML <-> One Key/value
+
+
+ Store Properties
+ ```java
+  Properties prop = new Propeties();
+  prop.setProperty("Name", "Jaemin Kim");
+  prop.setProperty("PhoneNumber", "000-0000-0000");
+
+  try(outputStream out = Files.newOutputStream(Paths.get("some.xml"))){
+    prop.storeToXML(out, "Some Comment");
+  }
+  ...
+ ```
+
+ result 
+ ```xml
+ <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+ <properties>
+    <comment>Some Comment</comment>
+    <entry key="Name">Jaemin Kim</entry>
+    <entry key="PhoneNUmber">000-0000-0000</entry>
+ </properties>
+ ```
+
+Load Properties
+```java
+Properties prop = new Properties();
+try(InputStream in = Files.newInputStream(Paths.get("some.xml"))){
+    prop.loadFromXML(in);
+}
+
+String value1 = prop.getProperty("Name"); 
+String value2 = prop.getProperty("PhoneNumber");
+...
+
+```
+
+Using Default Properties
+================================
+
