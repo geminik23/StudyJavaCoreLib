@@ -109,4 +109,31 @@ String value2 = prop.getProperty("PhoneNumber");
 
 Using Default Properties
 ================================
+ can create default properties by passing to constructor.
 
+ ```java
+ Properties defaults = new Properties();
+ defaults.setProperty("Price", "3000");
+ 
+ 
+ Properties newProp = new Properties(defaults);
+ String price = newProp.getProperty("Price");
+ 
+ System.out.println(price); // 3000
+
+ int value = Integer.parseInt(price);
+ newProp.setProperty("Price", Integer.toString(value*2));
+ price = newProp.getProperty("Price");
+
+ System.out.println(price); // 6000
+ ```
+ 
+
+Load file from package
+---------------------------------
+
+```java
+ ClassName.class.getResourceAsStream(path)
+``` 
+
+[Example2 - Default properties in package](Example2.java)
