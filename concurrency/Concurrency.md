@@ -12,7 +12,7 @@ Thread
  - Sequences of program instructions
  - Thread can create another threads (multithread)
 
->Concept Diagram
+>Concept Diagram (Process with Memory and Main Thread)
 
 Multithreading
 ===============================
@@ -22,6 +22,16 @@ Multithreading
  - Why use?
     - reduce excution times
 
+```java
+
+static void Example1(){
+    try{
+        for(int i=0;i<InFiles.length;++i)
+            SingleSum.Do(InFiles[i], OutFiles[i]);
+    }catch(IOException e){}
+}
+
+```
 
 [Example1 - Single Thread file process](Test.java)
 
@@ -33,9 +43,43 @@ Move to Multithreading
 
 
 
-Java Threading Foundation Types
+Java Threading Foundation 
 ===============================
- - Runnable interface
+ - Each thread handle own exceptions
 
- - 
+Threading Foundation Types
+-------------------------------
+
+ - Runnable interface
+    - only run() method (to be run on a thread)
+ - Thread class
+    - interact with thread states
+    - begin with start() method
+
+
+```java
+
+public class RunnableSum implements Runnable{
+
+    private String inFile, outFile;
+    public RunnableSum(String in, String out){ inFile = in; outFile = out;}
+    
+    public void run()
+    {
+        try{
+            SingleSum.Do(inFile, outFile);
+        }catch(IOException e){
+
+        }
+        
+    }
+}
+```
+[Example2 - Running separate Threads](Test.java)
+
+> Concept Diagram (Main Thread problem)
+
+ join() method // waiting for thread completion.
+
+[Example3 - use join()](Test.java)
 

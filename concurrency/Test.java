@@ -18,7 +18,8 @@ public class Test{
     public static void main(String[] agrs)
     {
         CreateExampleFiles();
-        Example1();
+        // Example1();
+        Example2();
     }
 
 
@@ -35,11 +36,30 @@ public class Test{
 
     }
 
+    static void Example2(){
+        
+        for(int i=0;i<InFiles.length;++i){
+            RunnableSum sum = new RunnableSum(InFiles[i], OutFiles[i]);
+            Thread thread = new Thread(sum);
+            thread.start();
+            
+        }
 
+    }
 
+    static void Example3(){
+        Thread[] threads = new Thread[InFiles.length];
+        for(int i=0;i<inFiles.length;++i)
+        {
+            RunnableSum sum = new RunnableSum(InFiles[i], OutFiles[i]);
+            threads[i] = new Thread(sum);
+            threads[i].start();
+        }
 
-
-
+        for(Thread thread:threads){
+            thread.join();
+        }
+    }
 
 
 
@@ -52,7 +72,7 @@ public class Test{
 
     static void GenerateRandomInteger(String fn){
         Random random = new Random();
-        int count = (80+random.nextInt(20));
+        int count = (1080+random.nextInt(20));
         try(BufferedWriter writer = Files.newBufferedWriter(Paths.get(fn))){
             for(int i=0;i<count;++i){
                 writer.write(""+random.nextInt(3000));
