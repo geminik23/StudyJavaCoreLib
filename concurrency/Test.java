@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 
 
 
@@ -19,7 +23,9 @@ public class Test{
     {
         CreateExampleFiles();
         // Example1();
-        Example2();
+        // Example2();
+        // Example3();
+        Example4();
     }
 
 
@@ -61,6 +67,20 @@ public class Test{
         }
     }
 
+    static void Example4(){
+        ExecutorService es = Executors.newFixedThreadPool(3);
+        
+        for(int i=0;i<inFiles.length;++i){
+            RunnableSum sum = new RunnableSum(InFiles[i], OutFiles[i]);
+            es.submit(sum);
+
+        }
+
+        try{
+            es.shutdown();
+            es.awaitTermination(60, TimeUnit.SECONDS);
+        }catch(Exception e){}
+    }
 
 
     //======================================================================================================

@@ -83,3 +83,37 @@ public class RunnableSum implements Runnable{
 
 [Example3 - use join()](Test.java)
 
+
+
+Thread Management with Thread Pools
+=======================================
+ - Problems
+    * responsible directly startup, shutdown.
+    * Overhead
+    * OutOfMemory 
+ - ThreadPools
+    * queue for tasks
+    * handle threads 
+ 
+ Thread Pool Types
+ --------------------------------------
+ - ExecutorService Interface
+    * Models thread pool behavior
+    * submit tasks
+    * Request and wait 
+
+ - Executors Class
+    * Methods for Creating thread pools
+        - Dynamically sized pools
+        - Size limited pools
+        - Schedule tasks for later
+
+[Example4 - FixedThreadPool] (Test.java)
+
+
+Thread Result Handling
+=========================================
+ -  manual handling
+
+ -  exception handling
+
