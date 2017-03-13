@@ -23,13 +23,15 @@ public class Test{
     
     public static void main(String[] agrs)
     {
-        CreateExampleFiles();
+        // CreateExampleFiles();
         // Example1();
         // Example2();
         // Example3();
         // Example4();
-        Example5();
-        System.out.println("Ended");
+        // Example5();
+
+        //---------------------
+        Example6();
     }
 
 
@@ -110,6 +112,30 @@ public class Test{
             }catch(Exception e){}
         }
     }
+
+
+
+
+    //--------------------
+    static void Example6(){
+        ExecutorService es = Executors.newFixedThreadPool(5);
+        GameScore score = new GameScore(10000);
+        
+        // for(int i=0;i<5;++i){
+            GameClient client = new GameClient(score);
+            es.submit(client);
+        // }
+        
+        try{
+            es.shutdown();
+            es.awaitTermination(60, TimeUnit.SECONDS);
+        }catch(Exception e){}
+
+        System.out.println(String.format("Final Score is %d", score.getScore()));
+        
+    }
+
+
 
     //======================================================================================================
     static void CreateExampleFiles(){

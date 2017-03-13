@@ -140,7 +140,7 @@ Thread Relationship Types
     * can return results
     * can throw exceptions
     * call() method
-    
+
  - Future interface
     * it represents results of thread task
     * returned by ExecutorService.submit
@@ -162,3 +162,62 @@ public class CallableSum implements Callable<Integer> {
 }
 
 ```
+[Example5 - Callable & Future] (Test.java)
+
+
+Concurrency Problem - Sharing Resources
+===========================================
+
+```java
+
+public class GameScore{
+    private int score;
+    public GameScore(int initScore){
+        this.score = initScore;
+    }
+
+    public int getScore(){
+        return this.score;
+    }
+
+    public void addScore(int score){
+        this.score += score;
+    }
+}
+
+
+public class GameClient implements Runnable{
+    private GameScore score;
+    public GameClient(GameScore score){
+        this.score = score;
+    }
+
+    public void run(){
+        int prev = score.getScore();
+        score.addScore(100);
+        int after = score.getScore();
+        System.out.println(String.format("%d after %d", prev, after));
+    }
+
+}
+
+```
+
+[Example6 - Sharing Resources Issues ](Test.java)
+
+> Concept Diagram
+
+[Example6 - remove comments](Test.java)
+
+
+Lock The Thread Access To Method
+=====================================
+ - Synchronized methods
+ - Synchronize per one instence
+    * one thread can access to method at a time.
+
+ Why use synchronized
+ ---------------------------
+ - 
+
+//100 
