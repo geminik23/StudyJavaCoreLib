@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Future;
 
 
 
@@ -25,7 +27,9 @@ public class Test{
         // Example1();
         // Example2();
         // Example3();
-        Example4();
+        // Example4();
+        Example5();
+        System.out.println("Ended");
     }
 
 
@@ -55,7 +59,7 @@ public class Test{
 
     static void Example3(){
         Thread[] threads = new Thread[InFiles.length];
-        for(int i=0;i<inFiles.length;++i)
+        for(int i=0;i<InFiles.length;++i)
         {
             RunnableSum sum = new RunnableSum(InFiles[i], OutFiles[i]);
             threads[i] = new Thread(sum);
@@ -63,14 +67,16 @@ public class Test{
         }
 
         for(Thread thread:threads){
+            try{
             thread.join();
+            }catch(Exception e){}
         }
     }
 
     static void Example4(){
-        ExecutorService es = Executors.newFixedThreadPool(3);
+        ExecutorService es = Executors.newFixedThreadPool(3); // max 3 thread
         
-        for(int i=0;i<inFiles.length;++i){
+        for(int i=0;i<InFiles.length;++i){
             RunnableSum sum = new RunnableSum(InFiles[i], OutFiles[i]);
             es.submit(sum);
 
@@ -82,6 +88,28 @@ public class Test{
         }catch(Exception e){}
     }
 
+
+    static void Example5(){
+        ExecutorService es = Executors.newFixedThreadPool(3); // max 3 thread
+        Future<Integer>[] results = new Future[InFiles.length];
+
+        for(int i=0;i<InFiles.length;++i){
+            CallableSum sum = new CallableSum(InFiles[i], OutFiles[i]);
+            results[i] = es.submit(sum);
+        }
+
+        es.shutdown();
+        
+        for(Future<Integer> result:results){
+            try{
+                int value = result.get(); // wait until available
+                System.out.println("Total : " + value);
+            }catch(ExecutionException e){
+                Throwable callableEx = e.getCause(); // real exception
+                System.out.println(String.format("%s - %s", callableEx.getClass().getSimpleName(), callableEx.getMessage()));
+            }catch(Exception e){}
+        }
+    }
 
     //======================================================================================================
     static void CreateExampleFiles(){

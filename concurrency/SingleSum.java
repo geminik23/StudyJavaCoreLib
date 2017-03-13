@@ -24,4 +24,15 @@ public class SingleSum{
             writer.write(String.format("Result of '%s' is %d", in, sum));
         }
     }
+
+    public static int DoNReturn(String in, String out) throws IOException{
+        int sum = 0;
+        String temp = null;
+        try(BufferedReader reader = Files.newBufferedReader(Paths.get(in)))
+        {
+            while((temp = reader.readLine())!=null)
+                sum += Integer.parseInt(temp);
+        }
+        return sum;
+    }
 }

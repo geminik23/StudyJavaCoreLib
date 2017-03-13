@@ -3,7 +3,7 @@ Concurrency Basics
 
 Process
 -------------------------------
- - Instance of Program or Application.
+ - Instance of Program.
  - Has Resources memory.
  - Has at least one thread!
 
@@ -108,12 +108,57 @@ Thread Management with Thread Pools
         - Size limited pools
         - Schedule tasks for later
 
+
+```java
+ExecutorService es = Executors.newFixedThreadPool(3); // max 3 threads
+
+for(int i=0;i<inFiles.length;++i){
+    RunnableSum sum = new RunnableSum(InFiles[i], OutFiles[i]);
+    es.submit(sum);
+}
+
+try{
+    es.shutdown();
+    es.awaitTermination(60, TimeUnit.SECONDS);
+}catch(Exception e){}
+```
+
 [Example4 - FixedThreadPool] (Test.java)
+
 
 
 Thread Result Handling
 =========================================
- -  manual handling
+ -  Manual handling ( reulst & exception ) using memory
+  > Conception Diagram
+ -  Using Threading Relation
+  > Conception Diagram
 
- -  exception handling
+Thread Relationship Types
+=========================================
+ - Callable interface 
+    * can return results
+    * can throw exceptions
+    * call() method
+    
+ - Future interface
+    * it represents results of thread task
+    * returned by ExecutorService.submit
+    * get() method (acting like join)
+    * return Callable return type
+    * throw Callable exception type
 
+```java
+...
+
+public class CallableSum implements Callable<Integer> {
+    private String inFile, outFile;
+    public CallableSum(String in, String out){ inFile = in; outFile = out;}
+    
+    public Integer call() throws IOException
+    {
+        return SingleSum.DoNReturn(inFile, outFile);
+    }
+}
+
+```
