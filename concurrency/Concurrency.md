@@ -216,8 +216,37 @@ Lock The Thread Access To Method
  - Synchronize per one instence
     * one thread can access to method at a time.
 
- Why use synchronized
+ Why use synchronized methods
  ---------------------------
- - 
+ - protect modification by multiple threads
+ - read value that might be modified by another thread
+ - cons 
+    * overhead
+    * only for multithreading
+ - all methods but not constructor
 
-//100 
+
+[Example6 - adding synchronized](Test.java)
+
+
+Manual Synchronization
+=====================================
+
+
+
+
+[Example7 - GameClient2](Test.java)
+
+
+Why use synchronized statment blocks
+-----------------------------
+ - provide Flexibility
+    * non-thread safe classes
+    * protect complex blocks of code
+    * synchronized methods just are not enough
+
+
+When not enough?
+====================================
+
+

@@ -31,7 +31,8 @@ public class Test{
         // Example5();
 
         //---------------------
-        Example6();
+        // Example6();
+        Example7();
     }
 
 
@@ -135,6 +136,22 @@ public class Test{
         
     }
 
+    static void Example7(){
+        ExecutorService es = Executors.newFixedThreadPool(5);
+        GameScore score = new GameScore(10000);
+        
+        for(int i=0;i<5;++i){
+            GameClient2 client = new GameClient2(score);
+            es.submit(client);
+        }
+        
+        try{
+            es.shutdown();
+            es.awaitTermination(60, TimeUnit.SECONDS);
+        }catch(Exception e){}
+
+        System.out.println(String.format("Final Score is %d", score.getScore()));
+    }
 
 
     //======================================================================================================
