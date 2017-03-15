@@ -231,11 +231,11 @@ Lock The Thread Access To Method
 
 Manual Synchronization
 =====================================
+ - manually lock the object with synchronized statement block.
 
 
 
-
-[Example7 - GameClient2](Test.java)
+[Example7 - GameClient2, remove synchronized](Test.java)
 
 
 Why use synchronized statment blocks
