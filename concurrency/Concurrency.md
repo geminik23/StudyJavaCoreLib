@@ -246,7 +246,4 @@ Why use synchronized statment blocks
     * synchronized methods just are not enough
 
 
-When not enough?
-====================================
-
-
+[Example8 - AdvancedGameClient -> Synchronized Block](Test.java)
