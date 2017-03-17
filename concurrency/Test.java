@@ -154,7 +154,7 @@ public class Test{
 
         System.out.println(String.format("Final Score is %d", score.getScore()));
     }
-
+    
     static void Example8(){
         int initScore = 10000;
 
