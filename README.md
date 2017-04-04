@@ -8,4 +8,5 @@ JAVA Core Library
 *   [Serialization](serialization/Serialization.md)
 *   [Properties](properties/Properties.md)
 *   [Concurrency](concurrency/Concurrency.md)
+*   [Concurrency2](concurrency2/Concurrency2.md)
 *   [Reflection](reflection/Reflection.md)
