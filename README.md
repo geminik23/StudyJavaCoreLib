@@ -10,3 +10,4 @@ JAVA Core Library
 *   [Concurrency](concurrency/Concurrency.md)
 *   [Concurrency2](concurrency2/Concurrency2.md)
 *   [Reflection](reflection/Reflection.md)
+*   [Annotation](annotation/Annotation.md)
